@@ -3,6 +3,7 @@ package com.ak87.cryptoinfo
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import com.ak87.cryptoinfo.api.ApiFactory
 import com.ak87.cryptoinfo.database.AppDatabase
 import com.ak87.cryptoinfo.pojo.CoinPriceInfo
@@ -10,6 +11,7 @@ import com.ak87.cryptoinfo.pojo.CoinPriceInfoRowData
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class CoinViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,12 +20,23 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
 
     val priceList = db.coinPriceInfoDao().getPriceList()
 
-    fun loadData() {
+    fun getDetailInfo(fSym: String): LiveData<CoinPriceInfo> {
+        return db.coinPriceInfoDao().getPriceInfoAboutCoin(fSym)
+    }
+
+    init {
+        loadData()
+    }
+
+    private fun loadData() {
         val disposable = ApiFactory.apiService.getTopCoinsInfo()
             .map { it.data?.map { it.coinInfo?.name }?.joinToString(",") }
             .flatMap { ApiFactory.apiService.getFullPriceList(fSyms = it.toString()) }
+            .map { getPriceListFromRawData(it) }
+            .delaySubscription(10, TimeUnit.SECONDS)
+            .repeat()
+            .retry()
             .subscribeOn(Schedulers.io())
-            .map { getPriceListFromRowData(it) }
             .subscribe({
                 db.coinPriceInfoDao().insertPriceList(it)
                 Log.d("TEST_OF_LOADING_DATA", "Success: $it")
@@ -34,7 +47,7 @@ class CoinViewModel(application: Application) : AndroidViewModel(application) {
         compositeDisposable.add(disposable)
     }
 
-    private fun getPriceListFromRowData(
+    private fun getPriceListFromRawData(
         coinPriceInfoRowData: CoinPriceInfoRowData
     ): List<CoinPriceInfo> {
         val result = ArrayList<CoinPriceInfo>()
