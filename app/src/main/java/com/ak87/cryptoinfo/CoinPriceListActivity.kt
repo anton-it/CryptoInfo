@@ -1,6 +1,7 @@
 package com.ak87.cryptoinfo
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +14,9 @@ class CoinPriceListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCoinPriceListBinding
     private lateinit var viewModel: CoinViewModel
+
+    private var baskPressedTime: Long = 0
+    private var backToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,4 +42,18 @@ class CoinPriceListActivity : AppCompatActivity() {
         })
 
     }
+
+    override fun onBackPressed() {
+        if (baskPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast?.cancel()
+            super.onBackPressed()
+            return
+        } else {
+            backToast =
+                Toast.makeText(baseContext, R.string.exit_message, Toast.LENGTH_SHORT)
+            backToast?.show()
+        }
+        baskPressedTime = System.currentTimeMillis()
+    }
+
 }
