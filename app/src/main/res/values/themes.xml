@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">#F0E0B0</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.CryptoInfo.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.CryptoInfo.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.CryptoInfo.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
