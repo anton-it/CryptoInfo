@@ -1,7 +1,7 @@
 package com.ak87.cryptoinfo.data.network
 
-import com.ak87.cryptoinfo.data.models.CoinInfoListOfData
-import com.ak87.cryptoinfo.data.models.CoinPriceInfoRowData
+import com.ak87.cryptoinfo.data.network.models.CoinNamesListDto
+import com.ak87.cryptoinfo.data.network.models.CoinInfoJsonContainerDto
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -9,18 +9,18 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET ("top/totalvolfull")
-    fun getTopCoinsInfo(
+    suspend fun getTopCoinsInfo(
         @Query(QUERY_PARAM_APY_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 10,
         @Query(QUERY_PARAM_TO_SYMBOL) toSym: String = CURRENCY
-    ): Single<CoinInfoListOfData>
+    ): CoinNamesListDto
 
     @GET ("pricemultifull")
-    fun getFullPriceList(
+    suspend fun getFullPriceList(
         @Query(QUERY_PARAM_APY_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_FROM_SYMBOLS)  fSyms: String,
         @Query(QUERY_PARAM_TO_SYMBOLS)  toSyms: String = CURRENCY
-    ): Single<CoinPriceInfoRowData>
+    ): CoinInfoJsonContainerDto
 
     companion object {
         private const val QUERY_PARAM_APY_KEY = "apy_key"
