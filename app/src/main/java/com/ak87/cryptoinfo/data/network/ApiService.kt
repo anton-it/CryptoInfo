@@ -1,7 +1,7 @@
-package com.ak87.cryptoinfo.api
+package com.ak87.cryptoinfo.data.network
 
-import com.ak87.cryptoinfo.pojo.CoinInfoListOfData
-import com.ak87.cryptoinfo.pojo.CoinPriceInfoRowData
+import com.ak87.cryptoinfo.data.models.CoinInfoListOfData
+import com.ak87.cryptoinfo.data.models.CoinPriceInfoRowData
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

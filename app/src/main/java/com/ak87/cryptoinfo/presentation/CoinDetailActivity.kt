@@ -1,10 +1,9 @@
-package com.ak87.cryptoinfo
+package com.ak87.cryptoinfo.presentation
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ak87.cryptoinfo.databinding.ActivityCoinDetailBinding

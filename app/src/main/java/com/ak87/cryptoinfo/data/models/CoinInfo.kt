@@ -1,4 +1,4 @@
-package com.ak87.cryptoinfo.pojo
+package com.ak87.cryptoinfo.data.models
 
 import android.media.Rating
 import com.google.gson.annotations.Expose

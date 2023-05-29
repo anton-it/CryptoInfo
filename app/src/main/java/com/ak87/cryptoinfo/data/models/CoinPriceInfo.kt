@@ -1,8 +1,8 @@
-package com.ak87.cryptoinfo.pojo
+package com.ak87.cryptoinfo.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ak87.cryptoinfo.api.ApiFactory.BASE_IMAGE_URL
+import com.ak87.cryptoinfo.data.network.ApiFactory.BASE_IMAGE_URL
 import com.ak87.cryptoinfo.utils.convertTimestampToTime
 import com.google.gson.annotations.Expose
 

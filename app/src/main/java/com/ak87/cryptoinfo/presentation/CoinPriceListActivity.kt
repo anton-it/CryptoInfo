@@ -1,13 +1,14 @@
-package com.ak87.cryptoinfo
+package com.ak87.cryptoinfo.presentation
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.ak87.cryptoinfo.adapters.CoinInfoAdapter
+import com.ak87.cryptoinfo.R
+import com.ak87.cryptoinfo.presentation.adapters.CoinInfoAdapter
 import com.ak87.cryptoinfo.databinding.ActivityCoinPriceListBinding
-import com.ak87.cryptoinfo.pojo.CoinPriceInfo
+import com.ak87.cryptoinfo.data.models.CoinPriceInfo
 
 
 class CoinPriceListActivity : AppCompatActivity() {

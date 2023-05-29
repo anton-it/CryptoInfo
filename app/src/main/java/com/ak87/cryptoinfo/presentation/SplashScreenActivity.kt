@@ -1,4 +1,4 @@
-package com.ak87.cryptoinfo
+package com.ak87.cryptoinfo.presentation
 
 import android.content.Intent
 import android.os.Bundle

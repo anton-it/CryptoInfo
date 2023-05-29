@@ -1,14 +1,12 @@
-package com.ak87.cryptoinfo.adapters
+package com.ak87.cryptoinfo.presentation.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ak87.cryptoinfo.R
 import com.ak87.cryptoinfo.databinding.ItemCoinInfoBinding
-import com.ak87.cryptoinfo.pojo.CoinInfo
-import com.ak87.cryptoinfo.pojo.CoinPriceInfo
+import com.ak87.cryptoinfo.data.models.CoinPriceInfo
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context): RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {

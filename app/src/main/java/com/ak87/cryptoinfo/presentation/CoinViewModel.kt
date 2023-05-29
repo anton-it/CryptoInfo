@@ -1,13 +1,13 @@
-package com.ak87.cryptoinfo
+package com.ak87.cryptoinfo.presentation
 
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.ak87.cryptoinfo.api.ApiFactory
-import com.ak87.cryptoinfo.database.AppDatabase
-import com.ak87.cryptoinfo.pojo.CoinPriceInfo
-import com.ak87.cryptoinfo.pojo.CoinPriceInfoRowData
+import com.ak87.cryptoinfo.data.network.ApiFactory
+import com.ak87.cryptoinfo.data.database.AppDatabase
+import com.ak87.cryptoinfo.data.models.CoinPriceInfo
+import com.ak87.cryptoinfo.data.models.CoinPriceInfoRowData
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
