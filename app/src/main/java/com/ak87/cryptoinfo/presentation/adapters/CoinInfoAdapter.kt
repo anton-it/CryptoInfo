@@ -10,7 +10,7 @@ import com.ak87.cryptoinfo.domain.CoinInfo
 import com.squareup.picasso.Picasso
 
 class CoinInfoAdapter(private val context: Context) :
-    RecyclerView.Adapter<CoinInfoAdapter.CoinInfoViewHolder>() {
+    RecyclerView.Adapter<CoinInfoViewHolder>() {
 
     var coinInfoList: List<CoinInfo> = listOf()
     set(value) {
@@ -48,9 +48,6 @@ class CoinInfoAdapter(private val context: Context) :
         }
     }
 
-    class CoinInfoViewHolder(
-        val binding: ItemCoinInfoBinding
-    ) : RecyclerView.ViewHolder(binding.root)
 
     interface OnCoinClickListener {
         fun onClick(coinPriceInfo: CoinInfo)
