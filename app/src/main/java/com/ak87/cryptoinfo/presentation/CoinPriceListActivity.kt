@@ -10,6 +10,7 @@ import com.ak87.cryptoinfo.presentation.adapters.CoinInfoAdapter
 import com.ak87.cryptoinfo.databinding.ActivityCoinPriceListBinding
 import com.ak87.cryptoinfo.data.network.models.CoinInfoDto
 import com.ak87.cryptoinfo.domain.CoinInfo
+import com.ak87.cryptoinfo.presentation.adapters.CoinDetailFragment
 
 
 class CoinPriceListActivity : AppCompatActivity() {
@@ -27,12 +28,11 @@ class CoinPriceListActivity : AppCompatActivity() {
         val adapter = CoinInfoAdapter(this)
         adapter.onCoinClickListener = object : CoinInfoAdapter.OnCoinClickListener {
             override fun onClick(coinPriceInfo: CoinInfo) {
-                val intent = CoinDetailActivity.newIntent(
-                    this@CoinPriceListActivity,
-                    coinPriceInfo.fromSymbol
-                )
-                startActivity(intent)
-                //Toast.makeText(this@CoinPriceListActivity, coinPriceInfo.fromSymbol, Toast.LENGTH_SHORT).show()
+                if (onPainMode()) {
+                    launchDetailActivity(coinPriceInfo.fromSymbol)
+                } else {
+                    launchDetailFragment(coinPriceInfo.fromSymbol)
+                }
             }
         }
         binding.rvCoinPriceList.adapter = adapter
@@ -46,6 +46,8 @@ class CoinPriceListActivity : AppCompatActivity() {
 
     }
 
+    private fun onPainMode() = binding.fragmentContainer == null
+
     override fun onBackPressed() {
         if (baskPressedTime + 2000 > System.currentTimeMillis()) {
             backToast?.cancel()
@@ -57,6 +59,24 @@ class CoinPriceListActivity : AppCompatActivity() {
             backToast?.show()
         }
         baskPressedTime = System.currentTimeMillis()
+    }
+
+    private fun launchDetailActivity(fromSymbol: String) {
+        val intent = CoinDetailActivity.newIntent(
+            this@CoinPriceListActivity,
+            fromSymbol
+        )
+        startActivity(intent)
+        //Toast.makeText(this@CoinPriceListActivity, coinPriceInfo.fromSymbol, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun launchDetailFragment(fromSymbol: String) {
+        supportFragmentManager.popBackStack()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, CoinDetailFragment.newInstance(fromSymbol))
+            .addToBackStack(null)
+            .commit()
     }
 
 }
