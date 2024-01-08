@@ -9,5 +9,6 @@
     <string name="last_market_label">Последняя сделка:</string>
     <string name="last_updated_label">Обновлено:</string>
     <string name="exit_message">Нажмите еще раз чтобы выйти</string>
+    <string name="settings_content_description">Настройки</string>
 
 </resources>
