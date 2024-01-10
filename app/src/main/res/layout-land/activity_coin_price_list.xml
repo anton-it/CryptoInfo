@@ -14,6 +14,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@id/middle_of_screen"
         tools:listitem="@layout/item_coin_info"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_add_shop_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:backgroundTint="@color/status_bar_color"
+        android:contentDescription="@string/settings_content_description"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/middle_of_screen"
+        app:srcCompat="@drawable/ic_settings" />
     
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
